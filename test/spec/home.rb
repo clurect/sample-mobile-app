@@ -4,7 +4,7 @@ require "rspec"
 
 include RSpec::Expectations
 
-describe "Launchpad" do
+describe "sample app" do
 
   before(:each) do
     @driver = Selenium::WebDriver.for :firefox
@@ -18,7 +18,7 @@ describe "Launchpad" do
   end
 
   after(:each) do
-    @driver.save_screenshot("./homeFailure.png")
+    @driver.save_screenshot(File.expand_path("../screen-shots/home.png",__FILE__))
     @driver.quit
     @verification_errors.should == []
   end
@@ -26,7 +26,7 @@ describe "Launchpad" do
 
 
   it "tests contact button" do
-
+		sleep 3
     @driver.find_element(:css, "a[href='#contact']").click
     sleep 3
 
