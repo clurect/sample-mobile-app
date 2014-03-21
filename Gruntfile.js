@@ -46,6 +46,7 @@ module.exports = function (grunt) {
 								},
 								files: [
 										'<%= yeoman.app %>/*.html',
+										'<%= yeoman.app %>/templates/*.html',
 										'{.tmp,<%= yeoman.app %>}/styles/{,*/}*.css',
 										'{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js',
 										'<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
@@ -71,7 +72,7 @@ module.exports = function (grunt) {
 								options: {
 										sizes: [
 												{
-														width: 320,
+														width: 320
 												},
 												{
 														width: 640
@@ -269,7 +270,8 @@ module.exports = function (grunt) {
 												'<%= yeoman.dist %>/scripts/{,*/}*.js',
 												'<%= yeoman.dist %>/styles/{,*/}*.css',
 												'<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}',
-												'<%= yeoman.dist %>/styles/fonts/*'
+												'<%= yeoman.dist %>/styles/fonts/*',
+												'<%= yeoman.dist %>/templates/*',
 										]
 								}
 						}
@@ -388,6 +390,12 @@ module.exports = function (grunt) {
 										cwd: '<%= yeoman.app %>',
 										src: '*.html',
 										dest: '<%= yeoman.dist %>'
+								},
+								{
+									expand: true,
+										cwd: '<%= yeoman.app %>/templates',
+										src: '*.html',
+										dest: '<%= yeoman.dist %>/templates'
 								}]
 						}
 				},
