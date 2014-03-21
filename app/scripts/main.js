@@ -12,6 +12,7 @@ require.config({
 		,'hbs':'vendor/hbs'
 		,"i18nprecompile": "vendor/i18nprecompile"
 		,"json2": "vendor/json2"
+		,'text':'vendor/text'
 	},
 	shim: {
 		bootstrap: {

@@ -1,7 +1,7 @@
-define(['backbone', 'marionette'],
-	function (Backbone, Marionette) {
+define(['backbone', 'marionette', 'text!tmpl/home.html'],
+	function (Backbone, Marionette,tmpl) {
 		return Backbone.Marionette.ItemView.extend({
-			template: _.template('HI!'),
+			template: _.template(tmpl),
 			onShow: function() {
 				console.log('oioio');
 			}
