@@ -91,8 +91,8 @@ function render(mode, el, holder, src) {
 		el.setAttribute("alt", text ? text : theme.text ? theme.text + " [" + dimensions_caption + "]" : dimensions_caption);
 
 		if(fallback || !holder.auto){
-		    el.style.width = dimensions.width + "px";
-		    el.style.height = dimensions.height + "px";
+				el.style.width = dimensions.width + "px";
+				el.style.height = dimensions.height + "px";
 		}
 
 		if (fallback) {
@@ -142,14 +142,14 @@ function fluid(el, holder, src) {
 	el.parentNode.insertBefore(fluid, el.nextSibling)
 
 	if(window.jQuery){
-	    jQuery(function($){
+			jQuery(function($){
 		$(el).on("load", function(){
-		   el.style.width = fluid.style.width;
-		   el.style.height = fluid.style.height;
-		   $(el).show();
-		   $(fluid).remove();
+			 el.style.width = fluid.style.width;
+			 el.style.height = fluid.style.height;
+			 $(el).show();
+			 $(fluid).remove();
 		});
-	    })
+			})
 	}
 }
 
@@ -276,13 +276,13 @@ app.flags = {
 		}
 	},
 	font: {
-	    regex: /font\:(.*)/,
-	    output: function(val){
+			regex: /font\:(.*)/,
+			output: function(val){
 		return this.regex.exec(val)[1];
-	    }
+			}
 	},
 	auto: {
-	    regex: /^auto$/
+			regex: /^auto$/
 	}
 }
 
@@ -314,23 +314,23 @@ app.run = function (o) {
 	var options = extend(settings, o), images = [];
 
 	if(options.images instanceof window.NodeList){
-	    imageNodes = options.images;
+			imageNodes = options.images;
 	}
 	else if(options.images instanceof window.Node){
-	    imageNodes = [options.images];
+			imageNodes = [options.images];
 	}
 	else{
-	    imageNodes = selector(options.images);
+			imageNodes = selector(options.images);
 	}
 
 	if(options.elements instanceof window.NodeList){
-	    bgnodes = options.bgnodes;
+			bgnodes = options.bgnodes;
 	}
 	else if(options.bgnodes instanceof window.Node){
-	    bgnodes = [options.bgnodes];
+			bgnodes = [options.bgnodes];
 	}
 	else{
-	    bgnodes = selector(options.bgnodes);
+			bgnodes = selector(options.bgnodes);
 	}
 
 	preempted = true;
@@ -340,17 +340,17 @@ app.run = function (o) {
 	var holdercss = document.getElementById("holderjs-style");
 
 	if(!holdercss){
-	    holdercss = document.createElement("style");
-	    holdercss.setAttribute("id", "holderjs-style");
-	    holdercss.type = "text/css";
-	    document.getElementsByTagName("head")[0].appendChild(holdercss);
+			holdercss = document.createElement("style");
+			holdercss.setAttribute("id", "holderjs-style");
+			holdercss.type = "text/css";
+			document.getElementsByTagName("head")[0].appendChild(holdercss);
 	}
 
 	if(holdercss.styleSheet){
-	    holdercss.styleSheet += options.stylesheet;
+			holdercss.styleSheet += options.stylesheet;
 	}
 	else{
-	    holdercss.textContent+= options.stylesheet;
+			holdercss.textContent+= options.stylesheet;
 	}
 
 	var cssregex = new RegExp(options.domain + "\/(.*?)\"?\\)");

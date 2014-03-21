@@ -1,6 +1,6 @@
 /*global define */
 define(['localforage'], function (localforage) {
-    'use strict';
+		'use strict';
 
 		var App = function(){
 //			Storage.set('score',0);
@@ -27,5 +27,5 @@ define(['localforage'], function (localforage) {
 			});
 			console.log('hay hay hay');
 		};
-    return App;
+		return App;
 });
