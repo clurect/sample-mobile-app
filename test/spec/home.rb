@@ -29,7 +29,18 @@ describe "sample app" do
 		sleep 3
     @driver.find_element(:css, "a[href='#contact']").click
     sleep 3
-
-
+    expect(@driver.find_element(:xpath, "//div[@class='well'][1]/p[1]").text).to include "Play a button"
+    scoreBtn = @driver.find_element(:id, 'scoreBtn')
+    scoreDisplay = @driver.find_element(:id, 'scoreDisplay')
+    expect(scoreDisplay.text).to eq "0"
+    for i in 1..3
+			scoreBtn.click
+			expect(scoreDisplay.text).to eq "#{i}"
+		end
+		@driver.navigate().refresh()
+		sleep 1
+		#must get elements again after a page refresh
+		scoreDisplay = @driver.find_element(:id, 'scoreDisplay')
+		expect(scoreDisplay.text).to eq '3'
   end
 end

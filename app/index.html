@@ -23,6 +23,7 @@
 
     <!-- Page content of course! -->
     <!-- Custom styles for this template -->
+
 <style>
   /* Move down content because we have a fixed navbar that is 50px tall */
   body {
@@ -69,24 +70,7 @@
         <li class="active"><a href="#">Home</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li class="nav-header">Nav header</li>
-            <li><a href="#">Separated link</a></li>
-            <li><a href="#">One more separated link</a></li>
-          </ul>
-        </li>
       </ul>
-      <form class="navbar-form form-inline pull-right">
-        <input type="text" placeholder="Email">
-        <input type="password" placeholder="Password">
-        <button type="submit" class="btn">Sign in</button>
-      </form>
     </div><!--/.nav-collapse -->
   </div>
 </div>
@@ -95,21 +79,15 @@
 
   <!-- Main jumbotron for a primary marketing message or call to action -->
   <div class="jumbotron">
-                    <h1 class=''>'Allo, 'Allo!</h1>
-                <p>You now have</p>
-                <ul>
-                    <li>HTML5 Boilerplate</li>
-                    <li>Twitter Bootstrap 3</li>
-                    <li>RequireJS</li>
-                    <li>Async localStorage Polyfill</li>
-                    <li>Fullscreen API snippet</li>
-                    <li>FastClick</li>
-                </ul>
-                <p>installed.</p>
-                <h3>Enjoy coding! - Yeoman</h3>
-
     <p><button id="fullscreenTest" class="btn btn-primary btn-large">Go Fullscreen</button>
     </p><p><span id="status"></span></p>
+	  <div class="well">
+		  <p>Play a button clicking game! OH BOY! Score will persist on refresh. WHAT? NO. WHAT? NO.</p>
+	    <p><button id="scoreBtn" class="btn btn-primary">Score! <span id="scoreDisplay" class="badge"></span></button></p>
+	  </div>
+	  <div class="well">
+		  <p>I'm another well div to cause confusion for testers. HAHAHAHAHA.</p>
+	  </div>
   </div>
 
   <div class="body-content">
@@ -166,10 +144,7 @@
         <script data-main="scripts/main" src="bower_components/requirejs/require.js"></script>
         <!-- endbuild -->
 
-        <!-- build:js scripts/async-local-storage.js -->
-        <script src="scripts/async.localStorage.js"></script>
-        <script src="scripts/async.localStorage.examples.js"></script>
-        <!-- endbuild -->
+
 
         <!-- build:js scripts/fullscreensnippet.js -->
         <script src="scripts/fullscreensnippet.js"></script>
