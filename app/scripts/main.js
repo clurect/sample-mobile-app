@@ -41,10 +41,12 @@ require.config({
 	}
 });
 
-require(['app', 'jquery', 'bootstrap','localforage', 'backbone','marionette'], function (app, $) {
+require(['app','router','backbone', 'jquery', 'bootstrap','localforage', 'marionette'], function (app, router, Backbone, $) {
 	'use strict';
+	new router();
 	// use app here
 	app.start();
+	Backbone.history.start();
 	//console.log(app);
 	console.log('Running jQuery %s', $().jquery);
 });
