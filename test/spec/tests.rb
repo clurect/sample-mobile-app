@@ -55,6 +55,10 @@ describe "sample app" do
 			sleep 3
 			expect(@driver.find_element(:xpath, "//button[contains(text(),'Click me')]").attribute("title")).to eq "OH NO YOU DIDN'T"
 		end
+		it "tests the list on the page with arrays" do
+			sleep 1
+			expect(@driver.find_elements(:tag_name, 'li')[3].text()).to include "Async local"
+		end
 	end
 	describe "extra page" do
 		it "can select a radio button" do
