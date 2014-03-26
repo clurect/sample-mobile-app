@@ -1,5 +1,5 @@
 <div class="row">
-	<p>Here's a few more things you can have.</p>
+	<p>Some forms to select from.</p>
 	<form>
 		<fieldset>
 			<label for="r1"><input type="radio" id="r1" name="ice cream"/>Chocolate</label>
@@ -24,6 +24,7 @@
 </div>
 
 <div class="row">
+	<h4>Quizzie</h4>
 	<table class="table table-striped table-bordered" summary="I don't like tables" title="I don't like tables" cellspacing="1" cellpadding="1">
 		<tr>
 			<td>Your text here</td>
@@ -40,11 +41,35 @@
 		<td>Your text here</td>
 		<td>Come find me!</td>
 		<td>Your text here</td>
-	</tr><tr>
-		<td>Your text here</td>
-		<td>Your text here</td>
-		<td>Your text here</td>
-		<td>Your text here</td>
 	</tr>
 	</table>
+
+	<p>You have to use the driver.find_element() function. Choose all the correct methods of selecting the table cell with the text 'Come find me!'.</p>
+	<form role="form">
+		<div class="form-group">
+			<label for="t1"><input type="checkbox" id="t1" name="test"/>driver.find_elements(:css, "td")[10]</label>
+		</div>
+		<div class="form-group">
+			<label for="t2"><input type="checkbox" id="t2" name="test"/>driver.find_elements(:css, "tc")[10]</label>
+		</div>
+		<div class="form-group">
+			<label for="t3"><input type="checkbox" id="t3" name="test"/>driver.find_elements(:xpath, "//td[contains(text(),'Come Find')]")</label>
+		</div>
+		<div class="form-group">
+			<label for="t4"><input type="checkbox" id="t4" name="test"/>driver.find_elements(:id, "find-cell")</label>
+		</div>
+		<div class="form-group">
+			<label for="t5"><input type="checkbox" id="t5" name="test"/>driver.find_elements(:tag_name, "//td[11]")</label>
+		</div>
+		<div class="form-group">
+			<label for="t6"><input type="checkbox" id="t6" name="test"/>driver.find_elements(:xpath, "//td[11]")</label>
+		</div>
+		<div class="form-group">
+			<label for="t7"><input type="checkbox" id="t7" name="test"/>driver.find_elements(:xpath, "//td[10]")</label>
+		</div>
+		<!--<label for="test"><input id="test" type="text" />How to find the table element that wants to be found?</label>-->
+	</form>
+	<button id="testBtn" class="btn btn-primary">Solve!</button> <span style="display:none" class="label label-danger">Danger</span>
+
+
 </div>

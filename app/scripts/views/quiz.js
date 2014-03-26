@@ -1,12 +1,17 @@
 define(['backbone', 'marionette', 'text!tmpl/quiz.html', 'localforage'],
 	function (Backbone, Marionette,tmpl,localforage) {
 		'use strict';
-		var out="";
+		var out="", answers, that;
 		return Marionette.ItemView.extend({
 			template: _.template(tmpl),
 			className:'container',
 			events: {
-				'click form button':'submit'
+				'click form button':'submit',
+				'click #testBtn':'test',
+				'keypress #test' : 'test'
+			},
+			initialize: function() {
+				that = this;
 			},
 			onShow: function() {
 			},
@@ -28,6 +33,22 @@ define(['backbone', 'marionette', 'text!tmpl/quiz.html', 'localforage'],
 					out += 'Extra instructions: ' + txt;
 
 				display.html(out).delay(1000).fadeIn(400);
+			},
+			test: function() {
+				var sel = $('[name="test"]:checked'),
+					disp = 0,
+					valid =['t1','t3','t6'],
+					label = $('.label');
+				_.each(sel,function(v){
+					if (_.contains(valid, v.id))
+						disp++;
+					else
+						disp--;
+				});
+				if (disp === 3)
+					label.html('Yay! You got them all right!').removeClass('label-danger').addClass('label-success').css('display','');
+				else
+					label.html('You didn\'t get all the right answers. :(').removeClass('label-success').addClass('label-danger').css('display','');
 			}
 		});
 	}
