@@ -1,13 +1,15 @@
-define(['views/home','views/about'],
-	function (HomeView, AboutView) {
+define(['views/home','views/quiz'],
+	function (HomeView, QuizView) {
 		"use strict";
 
 		return {
 			index:function() {
+//				$('#nav-collapse').collapse('hide');
 				App.mainRegion.show(new HomeView());
 			},
-			about: function() {
-				App.mainRegion.show(new AboutView());
+			quiz: function() {
+//				$('#nav-collapse').collapse('hide');
+				App.mainRegion.show(new QuizView());
 			}
 		};
 	});

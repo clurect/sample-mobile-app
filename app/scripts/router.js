@@ -5,7 +5,7 @@ define(['marionette', 'routeController'],
 		return marionette.AppRouter.extend({
 			appRoutes: {
 				'': 'index',
-				'about':'about'
+				'quiz':'quiz'
 			},
 			controller: Controller
 		});
