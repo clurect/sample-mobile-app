@@ -2,6 +2,11 @@ require "json"
 require "selenium-webdriver"
 require "rspec"
 
+require "rubygems"
+require "mongo"
+require "time"
+
+include Mongo
 include RSpec::Expectations
 describe "sample app" do
 
@@ -12,6 +17,8 @@ describe "sample app" do
 		@driver.manage.timeouts.implicit_wait = 3
 		@verification_errors = []
 		@driver.get(@base_url + ":9000")
+		@mongo_client = MongoClient.new("localhost", 27017);
+		mongo_stuff
 	end
 	$i = 0
 	after(:each) do
@@ -32,11 +39,10 @@ describe "sample app" do
 			sleep 2
 			# note here that xpath arrays start at 1 not the typical 0
 			expect(@driver.find_element(:xpath, "//div[@class='well'][1]/p[1]").text).to include "Play a button"
-			scoreBtn = @driver.find_element(:id, 'scoreBtn')
 			scoreDisplay = @driver.find_element(:id, 'scoreDisplay')
 			expect(scoreDisplay.text).to eq "0"
 			for i in 1..10
-				scoreBtn.click
+				click_score()
 				expect(scoreDisplay.text).to eq "#{i}"
 			end
 			@driver.navigate().refresh()
@@ -75,5 +81,9 @@ describe "sample app" do
 			sleep 1
 			expect(@driver.find_element(:id, "info").text).to eq "Strawberry Ice Cream\nWith toppings: Peanut Butter Cups\nCheesecake Chunks\nExtra instructions: I want extra peanut butter cups"
 		end
+	end
+	def click_score
+		scoreBtn = @driver.find_element(:id, 'scoreBtn')
+		scoreBtn.click
 	end
 end
