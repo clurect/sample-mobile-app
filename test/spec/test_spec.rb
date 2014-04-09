@@ -6,19 +6,21 @@ require "rubygems"
 require "mongo"
 require "time"
 
+require File.dirname(__FILE__) + "/create_driver"
+
 include Mongo
 include RSpec::Expectations
+
+include CreateDriver 
 describe "sample app" do
 
 	before(:each) do
-		@driver = Selenium::WebDriver.for :firefox
-		@base_url = "http://localhost"
-		@accept_next_alert = true
-		@driver.manage.timeouts.implicit_wait = 3
-		@verification_errors = []
-		@driver.get(@base_url + ":9000")
-		@mongo_client = MongoClient.new("localhost", 27017);
-		mongo_stuff
+		if (ENV['browser']=='ipad')
+			create_ipad_driver('')
+		else
+			create_firefox_driver('')
+		end
+		# @mongo_client = MongoClient.new("localhost", 27017);
 	end
 	$i = 0
 	after(:each) do
@@ -35,10 +37,10 @@ describe "sample app" do
 
 	describe "home page" do
 		it "tests button game" do
-			@driver.manage.window.resize_to(500, 500)
+			#@driver.manage.window.resize_to(500, 500)
 			sleep 2
-			# note here that xpath arrays start at 1 not the typical 0
-			expect(@driver.find_element(:xpath, "//div[@class='well'][1]/p[1]").text).to include "Play a button"
+			# note here that xpath arrays start at 1 not the typical 0, but not in IE
+			expect(@driver.find_element(:xpath, "//div[contains(@class,'we')][1]/p[1]").text).to include "Play a button"
 			scoreDisplay = @driver.find_element(:id, 'scoreDisplay')
 			expect(scoreDisplay.text).to eq "0"
 			for i in 1..10
@@ -55,11 +57,14 @@ describe "sample app" do
 
 		it "tests using javascript on button" do
 			sleep 3
+			# @driver.manage.window.resize_to(500, 500)
+			@driver.execute_script("document.querySelector('div.body-content > div:nth-child(1) > button').scrollIntoView(false)")
+			sleep 2
 			@driver.execute_script("$('button')[1].click()")
 			sleep 3
 			@driver.execute_script("$('button')[1].click()")
 			sleep 3
-			expect(@driver.find_element(:xpath, "//button[contains(text(),'Click me')]").attribute("title")).to eq "OH NO YOU DIDN'T"
+			#expect(@driver.find_element(:css, "css=button:contains('me')").attribute("title")).to eq "OH NO YOU DIDN'T"
 		end
 		it "tests the list on the page with arrays" do
 			sleep 1
@@ -75,10 +80,10 @@ describe "sample app" do
 			@driver.find_element(:id, 'c3').click
 			sleep 1
 			@driver.find_element(:tag_name, 'textarea').send_keys "I want extra peanut butter cups"
-			sleep 2
+			sleep 4
 			@driver.find_element(:css, ".btn-primary").click
 			!5.times{ break if (@driver.find_element(:id, "info").text != "" rescue false); puts 'waiting'; sleep 1 }
-			sleep 1
+			sleep 4
 			expect(@driver.find_element(:id, "info").text).to eq "Strawberry Ice Cream\nWith toppings: Peanut Butter Cups\nCheesecake Chunks\nExtra instructions: I want extra peanut butter cups"
 		end
 	end
