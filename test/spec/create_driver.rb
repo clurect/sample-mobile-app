@@ -19,6 +19,10 @@ module CreateDriver
     @driver = @driver = Selenium::WebDriver.for(:remote, :desired_capabilities => desired_caps, :url => server_url)
     general_setup(url)
   end
+  def create_headless_driver(url)
+    @driver = Selenium::WebDriver.for :phantomjs
+    general_setup(url)
+  end
   def create_firefox_driver(url)
     @driver = Selenium::WebDriver.for :firefox
     general_setup(url)
@@ -28,7 +32,7 @@ module CreateDriver
     general_setup(url)
   end
   def general_setup(url)
-    @base_url = "http://localhost:9000"
+    @base_url = url
     @accept_next_alert = true
     # wait to find an element
     @driver.manage.timeouts.implicit_wait = 3

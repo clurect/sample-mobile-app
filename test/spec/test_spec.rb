@@ -15,10 +15,13 @@ include CreateDriver
 describe "sample app" do
 
 	before(:each) do
+		url = 'http://localhost:9000'
 		if (ENV['browser']=='ipad')
-			create_ipad_driver('')
+			create_ipad_driver(url)
+		elsif (ENV['browser']=='headless')
+			create_headless_driver(url)
 		else
-			create_firefox_driver('')
+			create_firefox_driver(url)
 		end
 		# @mongo_client = MongoClient.new("localhost", 27017);
 	end
